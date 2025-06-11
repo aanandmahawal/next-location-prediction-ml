@@ -4,6 +4,9 @@ This project predicts the next geographic location of a user based on their move
 
 ---
 
+## 🧭 Project Overview
+This project aims to predict the next GPS location (latitude and longitude) of a user based on their movement history using classical machine learning techniques. It uses the Geolife Trajectories 1.3 Dataset by Microsoft Research, which consists of real-world GPS trajectory data collected from 182 users over five years. From this dataset we use data of 40 users to build this project.
+
 ## 🚀 Features
 
 - Predicts the next latitude and longitude from past trajectory.
@@ -15,10 +18,7 @@ This project predicts the next geographic location of a user based on their move
 
 ---
 
-## 🧭 Project Overview
-This project aims to predict the next GPS location (latitude and longitude) of a user based on their movement history using classical machine learning techniques. It uses the Geolife Trajectories 1.3 Dataset by Microsoft Research, which consists of real-world GPS trajectory data collected from 182 users over five years.
-
-🌍 Applications
+# Applications : 
 📱 Location-based recommendations and services
 
 🛣️ Traffic and mobility pattern analysis
