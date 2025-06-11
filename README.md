@@ -15,34 +15,11 @@ This project predicts the next geographic location of a user based on their move
 
 ---
 
-## 📁 Project Structure
 
-├── geolife_next_location_predictor.ipynb # Main Colab-compatible notebook
-├── README.md
-├── requirements.txt
-└── data/
-└── Geolife Trajectories 1.3.zip # Dataset (not included in repo)
-
-
-## 📦 Requirements
-
-- Python 3.7+
-- Google Colab or Jupyter
-- pandas
-- numpy
-- scikit-learn
-- matplotlib
-
-Install dependencies:
-
-```bash
-pip install pandas numpy scikit-learn matplotlib
 
 🧠 Model Overview
 Model Type: RandomForestRegressor (two separate models for latitude and longitude).
 
 Features:
-
 Spatial: dist_from_center, angle_from_center
-
 Temporal: hour, hour_sin, hour_cos
