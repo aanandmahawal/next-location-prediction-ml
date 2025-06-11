@@ -4,10 +4,10 @@ This project predicts the next geographic location of a user based on their move
 
 ---
 
-## 🧭 Project Overview
+##  Project Overview
 This project aims to predict the next GPS location (latitude and longitude) of a user based on their movement history using classical machine learning techniques. It uses the Geolife Trajectories 1.3 Dataset by Microsoft Research, which consists of real-world GPS trajectory data collected from 182 users over five years. From this dataset we use data of 40 users to build this project.
 
-## 🚀 Features
+##  Features
 
 - Predicts the next latitude and longitude from past trajectory.
 - Preprocesses `.plt` files from Geolife GPS data.
@@ -18,16 +18,13 @@ This project aims to predict the next GPS location (latitude and longitude) of a
 
 ---
 
-# Applications : 
-📱 Location-based recommendations and services
+## Applications : 
+-  Location-based recommendations and services
+-  Traffic and mobility pattern analysis
+-  Smart navigation and route prediction
+-  Urban planning and crowd flow modeling
 
-🛣️ Traffic and mobility pattern analysis
-
-🧭 Smart navigation and route prediction
-
-🏙️ Urban planning and crowd flow modeling
-
-## 📌 Project Pipeline
+##  Project Pipeline
 ### 1. Data Extraction & Preprocessing
 - Extract .plt trajectory files.
 
@@ -53,24 +50,18 @@ This project aims to predict the next GPS location (latitude and longitude) of a
 - Use a StandardScaler to normalize input features.
 
 ### 5. Evaluation
-- Metrics:
+- Metrics: R² Score, RMSE (Root Mean Squared Error)
 
-✅ R² Score
+- Visualization: Scatter plots of actual vs predicted coordinates
 
-📉 RMSE (Root Mean Squared Error)
-
-- Visualization:
-
-📊 Scatter plots of actual vs predicted coordinates
-
-🔍 Feature importance rankings
+- Feature importance rankings
 
 ### 6. Custom Input Prediction
 - Accept user-defined current location and hour.
 
 - Predict the next GPS coordinate using trained models.
 
-## 🧠 Why Random Forest?
+##  Why Random Forest?
 - Handles non-linear relationships in spatial-temporal data.
 
 - Robust to overfitting when regularized properly.
