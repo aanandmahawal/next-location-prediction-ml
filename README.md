@@ -13,7 +13,9 @@ This project predicts the next geographic location of a user based on their move
 - Supports custom input for next location prediction.
 - Visualizes actual vs predicted locations using scatter plots.
 
-🧭 Project Overview
+---
+
+## 🧭 Project Overview
 This project focuses on predicting a user's next GPS location (latitude and longitude) based on their current trajectory data using classical machine learning models. It utilizes the Geolife Trajectories 1.3 dataset released by Microsoft Research, which contains real-world GPS traces collected over five years from 182 users in Beijing.
 
 The objective is to build a robust model that, given a user's current spatial and temporal information, can accurately forecast the next point in their movement path. This has practical applications in:
