@@ -29,37 +29,37 @@ This project aims to predict the next GPS location (latitude and longitude) of a
 
 ## 📌 Project Pipeline
 ### 1. Data Extraction & Preprocessing
-Extract .plt trajectory files.
+- Extract .plt trajectory files.
 
-Parse them into a structured format using pandas.
+- Parse them into a structured format using pandas.
 
-Generate timestamps and derive temporal features like hour, weekday, etc.
+- Generate timestamps and derive temporal features like hour, weekday, etc.
 
 ### 2. Feature Engineering
-Temporal Features:
+- Temporal Features:
 
-hour, hour_sin, hour_cos (to capture time-of-day cycles)
+-- hour, hour_sin, hour_cos (to capture time-of-day cycles)
 
-Spatial Features:
+- Spatial Features:
 
-distance from center (Euclidean distance from trajectory centroid)
+-- distance from center (Euclidean distance from trajectory centroid)
 
-angle from center (directional component)
+-- angle from center (directional component)
 
-Target Variables:
+- Target Variables:
 
-next latitude and next longitude generated using a one-step time shift (.shift(-1))
+-- next latitude and next longitude generated using a one-step time shift (.shift(-1))
 
 ### 3. Data Cleaning & Noise Injection
-Drop rows with missing target values.
+- Drop rows with missing target values.
 
-Add Gaussian noise to latitude and longitude to:
+- Add Gaussian noise to latitude and longitude to:
 
-Simulate GPS imprecision
+-- Simulate GPS imprecision
 
-Reduce model overfitting
+-- Reduce model overfitting
 
-Round coordinates to 3 decimal places for generalization.
+-- Round coordinates to 3 decimal places for generalization.
 
 ### 4. Modeling
 Use two separate RandomForestRegressor models:
