@@ -36,67 +36,47 @@ This project aims to predict the next GPS location (latitude and longitude) of a
 - Generate timestamps and derive temporal features like hour, weekday, etc.
 
 ### 2. Feature Engineering
-- Temporal Features:
+- Temporal Features: hour, hour_sin, hour_cos (to capture time-of-day cycles)
 
--- hour, hour_sin, hour_cos (to capture time-of-day cycles)
+- Spatial Features: distance from center (Euclidean distance from trajectory centroid), angle from center (directional component)
 
-- Spatial Features:
-
--- distance from center (Euclidean distance from trajectory centroid)
-
--- angle from center (directional component)
-
-- Target Variables:
-
--- next latitude and next longitude generated using a one-step time shift (.shift(-1))
+- Target Variables: next latitude and next longitude generated using a one-step time shift (.shift(-1))
 
 ### 3. Data Cleaning & Noise Injection
 - Drop rows with missing target values.
 
-- Add Gaussian noise to latitude and longitude to:
-
--- Simulate GPS imprecision
-
--- Reduce model overfitting
-
--- Round coordinates to 3 decimal places for generalization.
+- Add Gaussian noise to latitude and longitude to: Simulate GPS imprecision, Reduce model overfitting, Round coordinates to 3 decimal places for generalization.
 
 ### 4. Modeling
-Use two separate RandomForestRegressor models:
-
-One for predicting the next latitude
-
-Another for predicting the next longitude
-
-Apply GridSearchCV with 5-fold cross-validation for hyperparameter tuning.
-
-Use a StandardScaler to normalize input features.
+- Use two separate RandomForestRegressor models: One for predicting the next latitude and another for predicting the next longitude
+- Apply GridSearchCV with 5-fold cross-validation for hyperparameter tuning.
+- Use a StandardScaler to normalize input features.
 
 ### 5. Evaluation
-Metrics:
+- Metrics:
 
 ✅ R² Score
 
 📉 RMSE (Root Mean Squared Error)
 
-Visualization:
+- Visualization:
 
 📊 Scatter plots of actual vs predicted coordinates
 
 🔍 Feature importance rankings
 
 ### 6. Custom Input Prediction
-Accept user-defined current location and hour.
+- Accept user-defined current location and hour.
 
-Predict the next GPS coordinate using trained models.
+- Predict the next GPS coordinate using trained models.
 
 ## 🧠 Why Random Forest?
-Handles non-linear relationships in spatial-temporal data.
+- Handles non-linear relationships in spatial-temporal data.
 
-Robust to overfitting when regularized properly.
+- Robust to overfitting when regularized properly.
 
-Provides feature importance insights for interpretability.
+- Provides feature importance insights for interpretability.
 
-Easy to tune with cross-validation.
+- Easy to tune with cross-validation.
 
 
