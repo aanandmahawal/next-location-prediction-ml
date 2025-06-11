@@ -27,15 +27,15 @@ This project aims to predict the next GPS location (latitude and longitude) of a
 
 🏙️ Urban planning and crowd flow modeling
 
-📌 Project Pipeline
-1. Data Extraction & Preprocessing
+## 📌 Project Pipeline
+# 1. Data Extraction & Preprocessing
 Extract .plt trajectory files.
 
 Parse them into a structured format using pandas.
 
 Generate timestamps and derive temporal features like hour, weekday, etc.
 
-2. Feature Engineering
+# 2. Feature Engineering
 Temporal Features:
 
 hour, hour_sin, hour_cos (to capture time-of-day cycles)
@@ -50,7 +50,7 @@ Target Variables:
 
 next latitude and next longitude generated using a one-step time shift (.shift(-1))
 
-3. Data Cleaning & Noise Injection
+# 3. Data Cleaning & Noise Injection
 Drop rows with missing target values.
 
 Add Gaussian noise to latitude and longitude to:
@@ -61,7 +61,7 @@ Reduce model overfitting
 
 Round coordinates to 3 decimal places for generalization.
 
-4. Modeling
+# 4. Modeling
 Use two separate RandomForestRegressor models:
 
 One for predicting the next latitude
@@ -72,7 +72,7 @@ Apply GridSearchCV with 5-fold cross-validation for hyperparameter tuning.
 
 Use a StandardScaler to normalize input features.
 
-5. Evaluation
+# 5. Evaluation
 Metrics:
 
 ✅ R² Score
@@ -85,21 +85,12 @@ Visualization:
 
 🔍 Feature importance rankings
 
-6. Custom Input Prediction
+# 6. Custom Input Prediction
 Accept user-defined current location and hour.
 
 Predict the next GPS coordinate using trained models.
 
-Example:
-
-python
-Copy
-Edit
-custom_input = prepare_input(39.9847, 116.3184, 14)
-pred_lat = grid_lat.predict(custom_input)[0]
-pred_lon = grid_lon.predict(custom_input)[0]
-print(f"Predicted: Latitude={pred_lat}, Longitude={pred_lon}")
-🧠 Why Random Forest?
+## 🧠 Why Random Forest?
 Handles non-linear relationships in spatial-temporal data.
 
 Robust to overfitting when regularized properly.
