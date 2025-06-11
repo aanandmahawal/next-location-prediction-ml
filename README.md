@@ -16,78 +16,96 @@ This project predicts the next geographic location of a user based on their move
 ---
 
 ## 🧭 Project Overview
-This project focuses on predicting a user's next GPS location (latitude and longitude) based on their current trajectory data using classical machine learning models. It utilizes the Geolife Trajectories 1.3 dataset released by Microsoft Research, which contains real-world GPS traces collected over five years from 182 users in Beijing.
+This project aims to predict the next GPS location (latitude and longitude) of a user based on their movement history using classical machine learning techniques. It uses the Geolife Trajectories 1.3 Dataset by Microsoft Research, which consists of real-world GPS trajectory data collected from 182 users over five years.
 
-The objective is to build a robust model that, given a user's current spatial and temporal information, can accurately forecast the next point in their movement path. This has practical applications in:
+🌍 Applications
+📱 Location-based recommendations and services
 
-Location-based services (e.g., app recommendations, smart notifications)
+🛣️ Traffic and mobility pattern analysis
 
-Traffic pattern analysis
+🧭 Smart navigation and route prediction
 
-Human mobility modeling
+🏙️ Urban planning and crowd flow modeling
 
-Urban planning and smart navigation systems
+📌 Project Pipeline
+1. Data Extraction & Preprocessing
+Extract .plt trajectory files.
 
-📌 Key Steps in the Pipeline
-Data Extraction & Parsing
+Parse them into a structured format using pandas.
 
-Extract .plt files from the Geolife dataset.
+Generate timestamps and derive temporal features like hour, weekday, etc.
 
-Parse them into structured DataFrames (latitude, longitude, timestamp).
+2. Feature Engineering
+Temporal Features:
 
-Feature Engineering
+hour, hour_sin, hour_cos (to capture time-of-day cycles)
 
-Temporal features: hour of day, weekday, hour_sin, hour_cos (to model cyclic patterns).
+Spatial Features:
 
-Spatial features:
+distance from center (Euclidean distance from trajectory centroid)
 
-Distance from center of user’s trajectory
+angle from center (directional component)
 
-Angle from center (bearing-like feature)
+Target Variables:
 
-The raw latitude/longitude is not directly used in the model to prevent overfitting.
+next latitude and next longitude generated using a one-step time shift (.shift(-1))
 
-Target Variable Generation
+3. Data Cleaning & Noise Injection
+Drop rows with missing target values.
 
-The next point’s latitude and longitude are calculated using .shift(-1) on the sequence, turning it into a supervised learning problem (current → next).
+Add Gaussian noise to latitude and longitude to:
 
-Noise Injection & Overfitting Reduction
+Simulate GPS imprecision
 
-Added Gaussian noise to reduce overfitting on identical GPS points.
+Reduce model overfitting
 
-Used reduced coordinate precision (rounding) to simulate real-world GPS variation.
+Round coordinates to 3 decimal places for generalization.
 
-Model Training
+4. Modeling
+Use two separate RandomForestRegressor models:
 
-Trained separate RandomForestRegressor models for predicting:
+One for predicting the next latitude
 
-Next Latitude
+Another for predicting the next longitude
 
-Next Longitude
+Apply GridSearchCV with 5-fold cross-validation for hyperparameter tuning.
 
-Used GridSearchCV with 5-fold cross-validation to optimize hyperparameters.
+Use a StandardScaler to normalize input features.
 
-Evaluation Metrics
+5. Evaluation
+Metrics:
 
-R² Score
+✅ R² Score
 
-RMSE (Root Mean Squared Error)
+📉 RMSE (Root Mean Squared Error)
 
-Feature Importance visualizations
+Visualization:
 
-Scatter plots comparing actual vs predicted locations
+📊 Scatter plots of actual vs predicted coordinates
 
-Custom Input Prediction
+🔍 Feature importance rankings
 
-User can input a location and time (hour) and the model returns a predicted next GPS coordinate.
+6. Custom Input Prediction
+Accept user-defined current location and hour.
 
-📍 Why Random Forest?
-Random Forest was chosen because:
+Predict the next GPS coordinate using trained models.
 
-It handles non-linear spatial and temporal relationships well.
+Example:
 
-It provides interpretability (via feature importance).
+python
+Copy
+Edit
+custom_input = prepare_input(39.9847, 116.3184, 14)
+pred_lat = grid_lat.predict(custom_input)[0]
+pred_lon = grid_lon.predict(custom_input)[0]
+print(f"Predicted: Latitude={pred_lat}, Longitude={pred_lon}")
+🧠 Why Random Forest?
+Handles non-linear relationships in spatial-temporal data.
 
-It helps reduce overfitting via bagging and regularization.
+Robust to overfitting when regularized properly.
+
+Provides feature importance insights for interpretability.
+
+Easy to tune with cross-validation.
 
 
